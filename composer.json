@@ -1,0 +1,29 @@
+{
+    "name": "code-colliders/basic-user-bundle",
+    "license": "CeCILL",
+    "description": "A basic integration for authentication in symfony",
+    "type": "symfony-bundle",
+    "keywords": [
+        "User management"
+    ],
+    "homepage": "https://codecolliders.com",
+    "require": {
+        "symfony/framework-bundle": "^5.0",
+        "symfony/security-bundle": "^5.0"
+    },
+    "authors": [
+        {
+            "name": "William Lefebvre",
+            "email": "william@codecolliders.com"
+        },
+        {
+            "name": "Romain Virmaux",
+            "email": "romain@codecolliders.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CodeColliders\\BasicUserBundle\\": ""
+        }
+    }
+}
