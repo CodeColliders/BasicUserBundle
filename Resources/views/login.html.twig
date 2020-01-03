@@ -1,0 +1,76 @@
+{% extends '@CodeCollidersBasicUser/base.html.twig' %}
+
+{% block title %}{% trans %}Log in{% endtrans %}{% endblock %}
+{% block body %}
+    {% trans_default_domain 'FOSUserBundle' %}
+
+
+    <div class="login_form">
+
+        {% if app.user %}
+            <div class="login-notif">
+                {% trans %}You are logged in as{% endtrans %} {{ app.user.username }}, <a
+                        href="{{ path('code_colliders_basic_user_logout') }}">{% trans %}Logout{% endtrans %}</a>
+            </div>
+        {% endif %}
+        <div class="wrapper">
+            <form class="login" method="post">
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                {% if branding.logo_url %}
+                    <img class="branding" src="{{ branding.logo_url }}" alt="Logo">
+                {% endif %}
+                {% if branding.form_title %}
+                    <p class="title">{{ branding.form_title }}</p>
+                {% endif %}
+                {% if error %}
+                    <div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div class="input-container">
+                    <input placeholder="{% trans %}Email{% endtrans %}" autofocus type="email" id="username"
+                           name="username"
+                           value="{{ last_username }}" required="required" autofocus/>
+                    <div class="indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-user">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <input placeholder="{% trans %}Password{% endtrans %}" type="password" id="password" name="password"
+                           required="required"
+                           autocomplete="current-password"/>
+                    <div class="indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-key">
+                            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <button type="submit" id="_submit" name="_submit">
+                    <i class="spinner"></i>
+                    <span class="state">{% trans %}Login{% endtrans %}</span>
+
+                </button>
+
+
+            </form>
+        </div>
+        {% if branding.catchphrase %}
+            <div class="catchphrase">{{ branding.catchphrase }}</div>
+        {% endif %}
+    </div>
+
+{% endblock body %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

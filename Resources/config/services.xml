@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="code_colliders_basic_user.authentication_controller"
+                 class="CodeColliders\BasicUserBundle\Controller\AuthenticationController" public="true" autowire="true">
+            <argument type="service" id="Symfony\Component\Security\Http\Authentication\AuthenticationUtils"/>
+            <argument type="collection" />
+        </service>
+        <service id="code_colliders_basic_user.init_maker"
+                 class="CodeColliders\BasicUserBundle\Maker\BasicUserInitMaker" public="true" >
+            <tag name="maker.command"/>
+            <argument type="string">%kernel.project_dir%</argument>
+        </service>
+        <service id="code_colliders_basic_user.authenticator" class="CodeColliders\BasicUserBundle\Security\LoginFormAuthenticator">
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface"/>
+            <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+            <argument type="service" id="Symfony\Component\Security\Csrf\CsrfTokenManagerInterface"/>
+            <argument type="service" id="Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface"/>
+            <argument type="string"/>
+            <argument type="string"/>
+        </service>
+    </services>
+</container>

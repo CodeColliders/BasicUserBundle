@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+    <route id="code_colliders_basic_user_login" controller="code_colliders_basic_user.authentication_controller::login" path="/login" />
+    <route id="code_colliders_basic_user_logout" controller="code_colliders_basic_user.authentication_controller::logout" path="/logout" />
+</routes>

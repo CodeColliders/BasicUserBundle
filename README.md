@@ -39,3 +39,91 @@ return [
     CodeColliders\BasicUserBundle\CodeCollidersBasicUserBundle::class => ['all' => true],
 ];
 ```
+
+Configure the bundle
+----------------------------------------
+
+### Step 1: Create a User class
+```console
+$ php bin/console make:entity User
+```
+the class must implement the `\Symfony\Component\Security\Core\User\UserInterface`
+ 
+ or extends the `\CodeColliders\BasicUserBundle\Entity\UserBase`
+
+### Step 2: create configurations
+
+package config:
+```yaml
+# config/packages/code_colliders_basic_user.yaml
+
+code_colliders_basic_user:
+  user_class: App\Entity\User # The fully qualified class for your user
+  redirect_route: home # Default redirection after login (default: login page)
+  branding: # Optional part
+    logo_url: null # Picture url to add a logo in login form  
+    background_url: null # Picture url to add a background image in login form page
+    form_title: "Log in" # The title of the form (default: Log in)
+    catchphrase: "Using basic user bundle" # A catchphrase at the bottom of the form
+```
+
+routing:
+```yaml
+# config/routes/code_colliders_basic_user.yaml
+
+basic_user_login:
+  resource: '@CodeCollidersBasicUserBundle/Resources/config/routes.xml'
+  prefix: /user # The prefix for routes '/login' and '/logout'
+```
+
+Configure the security bundle
+----------------------------------------
+
+```yaml
+# config/packages/security.yaml
+
+security:
+    # Roles configurations
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:  # Your user class
+            algorithm: auto
+
+        # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            logout:
+                path: code_colliders_basic_user_logout
+            guard:
+                authenticators:
+                    - code_colliders_basic_user.authenticator
+
+
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+
+ 
+```

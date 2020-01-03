@@ -1,0 +1,3 @@
+basic_user_login:
+  path: /login
+  controller: CodeColliders\BasicUserBundle\Controller\SecurityController::login

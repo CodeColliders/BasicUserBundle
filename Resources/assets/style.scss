@@ -1,0 +1,142 @@
+$main-color: #4da6e6;
+$text-color: black;
+//$main-color: #b3a00d;
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.inner-body {
+  background-color: rgba($main-color,.8);
+  height: 100vh;
+}
+
+.login_form {
+  font-family: Ubuntu, "sans-serif";
+  position: absolute;
+  border-bottom: 5px solid darken($main-color, 20);
+  border-radius: 3px;
+  top: 50vh;
+  left: 50vw;
+  transform: translateY(-50%) translateX(-50%);
+  box-shadow: 0 0 5px 1px rgba($main-color, .5);
+  width: 400px;
+  max-width: 90vw;
+  background-color: white;
+.branding{
+  display: block;
+  margin: 5px auto;
+}
+  .login-notif {
+    background-color: $main-color;
+    color: $text-color;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .wrapper {
+    padding: 20px 20px 0;
+    background-color: white;
+    p {
+      margin-top: 0;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+  }
+
+  input {
+    width: 100%;
+    border-radius: 3px;
+    border: 2px solid lighten($main-color, 20);
+    padding: 15px 10px;
+    transition: border-color .2s;
+    height: 50px;
+
+    &:focus {
+      border-color: $main-color;
+    }
+
+    &::placeholder {
+      color: $main-color;
+    }
+  }
+
+  button {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    border: none;
+    padding: 25px;
+    background-color: $main-color;
+    color: $text-color;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 30px;
+    transition: background-color .1s;
+
+    &:hover {
+      background-color: darken($main-color, 10);
+    }
+  }
+  .catchphrase{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    color: $text-color;
+  }
+}
+
+.input-container {
+  position: relative;
+  margin: 20px 0;
+
+  .indicator {
+    position: absolute;
+    top: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: $main-color;
+    z-index: -1;
+    transition: right .3s;
+
+    svg {
+      color: $text-color;
+      width: 30px;
+      margin: 13px 10px;
+      height: 24px;
+    }
+  }
+
+  input:focus + .indicator {
+    right: -70px;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .input-container {
+    .indicator {
+      overflow: hidden;
+      z-index: 1;
+      width: 0;
+      transition: width .2s;
+    }
+
+    input:focus + .indicator {
+      right: 0;
+      width: 50px;
+    }
+  }
+}
+
