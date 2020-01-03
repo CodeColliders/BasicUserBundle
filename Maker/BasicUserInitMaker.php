@@ -40,15 +40,15 @@ class BasicUserInitMaker extends AbstractMaker
                 __DIR__.'/../Resources/skeleton/user.tpl.php'
             );
             $generator->writeChanges();
-            $io->text("Your class '$userClass' has been created");
             $userClassNameDetails = $userClassNameDetails->getFullName();
+            $io->text("The class '$userClassNameDetails' has been created");
         } else {
             $userClassNameDetails = $io->ask('Choose your User class <fg=yellow>[App\\Entity\\User]</>')??'App\\Entity\\User';
         }
-        $route_prefix = $io->ask('Choose a prefix refix for routes \'/login\' and \'/logout\' <fg=yellow>[user]</>')??'/user';
+        $route_prefix = $io->ask('Choose a prefix refix for routes \'/login\' and \'/logout\' <fg=yellow>[/user]</>')??'/user';
         $redirect_route = $io->ask('Choose a route to redirect after login <fg=yellow>[code_colliders_basic_user_login]</>')??'code_colliders_basic_user_login';
         $branding = $io->ask('Configure form branding (<fg=yellow>y/N</>)')?[]:false;
-        if($branding){
+        if($branding === []){
             $branding["form_title"] = $io->ask('Form title <fg=yellow>[Log in]</>')??'Log in';
             $branding["catchphrase"] = $io->ask('Form catchphrase <fg=yellow>[Using basic user bundle]</>')??'Using basic user bundle';
             $branding["logo_url"] = $io->ask('Your logo URL <fg=yellow>[null]</>')??'null';
@@ -64,7 +64,7 @@ class BasicUserInitMaker extends AbstractMaker
         ]);
         $generator->writeChanges();
 
-        $io->success($userClassNameDetails);
+        $io->success("Configuration successfully created. Now, you can generate a password using 'security:encode-password' and login at '$route_prefix/login'");
 
         return 0;
     }
