@@ -20,6 +20,7 @@ class BasicUserInitMaker extends AbstractMaker
 {
     protected static $defaultName = 'basic-user:init';
     protected $projectDir;
+    protected static $POSITIVE_ANSWERS = ['y','yes','o', 'oui'];
 
     public function __construct(string $projectDir)
     {
@@ -47,7 +48,7 @@ class BasicUserInitMaker extends AbstractMaker
         }
         $route_prefix = $io->ask('Choose a prefix refix for routes \'/login\' and \'/logout\' <fg=yellow>[/user]</>')??'/user';
         $redirect_route = $io->ask('Choose a route to redirect after login <fg=yellow>[code_colliders_basic_user_login]</>')??'code_colliders_basic_user_login';
-        $branding = $io->ask('Configure form branding (<fg=yellow>y/N</>)')?[]:false;
+        $branding = in_array(mb_strtolower($io->ask('Configure form branding (<fg=yellow>y/N</>)')),self::$POSITIVE_ANSWERS)?[]:false;
         if($branding === []){
             $branding["form_title"] = $io->ask('Form title <fg=yellow>[Log in]</>')??'Log in';
             $branding["catchphrase"] = $io->ask('Form catchphrase <fg=yellow>[Using basic user bundle]</>')??'Using basic user bundle';
