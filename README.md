@@ -40,7 +40,15 @@ return [
 ];
 ```
 
-Configure the bundle
+Configure the bundle (using command line tool)
+----------------------------------------
+
+Use `php bin/console basic-user:init` to create bundle configurations
+
+Use `php bin/console basic-user:init -c User` to create bundle configurations and the User entity
+
+
+Configure the bundle (manually)
 ----------------------------------------
 
 ### Step 1: Create a User class
