@@ -68,12 +68,15 @@ package config:
 code_colliders_basic_user:
   user_class: App\Entity\User # The fully qualified class for your user
   redirect_route: home # Default redirection after login (default: login page)
+  user_identifier: email # Unique field used in your user entity to login 
   branding: # Optional part
     logo_url: null # Picture url to add a logo in login form  
     background_url: null # Picture url to add a background image in login form page
     form_title: "Log in" # The title of the form (default: Log in)
     catchphrase: "Using basic user bundle" # A catchphrase at the bottom of the form
+    form_identifier_type: email # Type of field for user identifier 
 ```
+> you can use `php bin/console config:dump-reference code_colliders_basic_user` to get the configuration file reference.
 
 routing:
 ```yaml
@@ -135,3 +138,5 @@ security:
 
  
 ```
+> you can use `php bin/console config:dump-reference security` to get the security configuration file reference.
+
