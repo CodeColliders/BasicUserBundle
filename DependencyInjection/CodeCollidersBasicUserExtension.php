@@ -20,8 +20,10 @@ class CodeCollidersBasicUserExtension extends Extension
         $authenticator = $container->getDefinition('code_colliders_basic_user.authenticator');
         $authenticator->setArgument('$userClass', $config['user_class']);
         $authenticator->setArgument('$redirectRoute', $config['redirect_route']);
+        $authenticator->setArgument('$userIdentifier', $config['user_identifier']);
         $controller = $container->getDefinition('code_colliders_basic_user.authentication_controller');
         $controller->setArgument('$branding', $config['branding']);
+        $controller->setArgument('$userIdentifier', $config['user_identifier']);
 
     }
 }

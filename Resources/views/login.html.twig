@@ -25,7 +25,7 @@
                     <div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <div class="input-container">
-                    <input placeholder="{% trans %}Email{% endtrans %}" autofocus type="email" id="username"
+                    <input placeholder="{{ user_identifier | capitalize }}" autofocus type="{{ branding.form_identifier_type }}" id="username"
                            name="username"
                            value="{{ last_username }}" required="required"/>
                     <div class="indicator">

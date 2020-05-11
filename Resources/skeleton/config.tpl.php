@@ -1,5 +1,6 @@
 code_colliders_basic_user:
     user_class: <?= $user_class ?> # The fully qualified class for your user
+    user_identifier: <?= $user_identifier ?> # The fully qualified class for your user
     redirect_route: <?= $redirect_route ?> # Default redirection after login (default: login page)
 <?php if($branding): ?>
     branding: # Optional part
