@@ -45,6 +45,7 @@ class BasicUserInitMaker extends AbstractMaker
             $io->text("The class '$userClassNameDetails' has been created");
         } else {
             $userClassNameDetails = $io->ask('Choose your User class <fg=yellow>[App\\Entity\\User]</>')??'App\\Entity\\User';
+            $userIdentifier = $io->ask('Which field is the unique identifier for your user <fg=yellow>[email]</>')??'email';
         }
         $route_prefix = $io->ask('Choose a prefix refix for routes \'/login\' and \'/logout\' <fg=yellow>[/user]</>')??'/user';
         $redirect_route = $io->ask('Choose a route to redirect after login <fg=yellow>[code_colliders_basic_user_login]</>')??'code_colliders_basic_user_login';
@@ -57,6 +58,7 @@ class BasicUserInitMaker extends AbstractMaker
         }
         $generator->generateFile($this->projectDir.'/config/packages/code_colliders_basic_user.yaml', __DIR__.'/../Resources/skeleton/config.tpl.php', [
             "user_class"=>$userClassNameDetails,
+            "user_identifier"=>$userIdentifier,
             "redirect_route"=>$redirect_route,
             "branding"=>$branding,
         ]);

@@ -11,15 +11,17 @@ class AuthenticationController extends AbstractController
 {
     private $authenticationUtils;
     private $branding;
+    private $userIdentifier;
 
     /**
      * AuthenticationController constructor.
      * @param AuthenticationUtils $authenticationUtils
      */
-    public function __construct(AuthenticationUtils $authenticationUtils, $branding)
+    public function __construct(AuthenticationUtils $authenticationUtils, $branding, $userIdentifier)
     {
         $this->authenticationUtils = $authenticationUtils;
         $this->branding = $branding;
+        $this->userIdentifier = $userIdentifier;
     }
 
     public function logout()
@@ -38,6 +40,6 @@ class AuthenticationController extends AbstractController
         // last username entered by the user
         $lastUsername = $this->authenticationUtils->getLastUsername();
 
-        return $this->render('@CodeCollidersBasicUser/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'branding' => $this->branding]);
+        return $this->render('@CodeCollidersBasicUser/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'branding' => $this->branding, 'user_identifier' => $this->userIdentifier]);
     }
 }

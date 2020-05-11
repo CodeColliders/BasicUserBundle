@@ -9,6 +9,7 @@
                  class="CodeColliders\BasicUserBundle\Controller\AuthenticationController" public="true" autowire="true">
             <argument type="service" id="Symfony\Component\Security\Http\Authentication\AuthenticationUtils"/>
             <argument type="collection" />
+            <argument type="string"/>
         </service>
         <service id="code_colliders_basic_user.init_maker"
                  class="CodeColliders\BasicUserBundle\Maker\BasicUserInitMaker" public="true" >
@@ -20,6 +21,7 @@
             <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
             <argument type="service" id="Symfony\Component\Security\Csrf\CsrfTokenManagerInterface"/>
             <argument type="service" id="Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface"/>
+            <argument type="string"/>
             <argument type="string"/>
             <argument type="string"/>
         </service>
