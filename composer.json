@@ -9,9 +9,9 @@
     "homepage": "https://codecolliders.com",
     "require": {
         "php": "^8.1",
-        "symfony/framework-bundle": "^5.0|^4.4",
+        "symfony/framework-bundle": "^5.0|^4.4|^6.0|^6.4",
         "symfony/orm-pack": "^1.0",
-        "symfony/security-bundle": "^5.0|^4.4",
+        "symfony/security-bundle": "^5.0|^4.4|^6.0|^6.4",
         "symfony/twig-pack": "^1.0"
     },
     "authors": [
